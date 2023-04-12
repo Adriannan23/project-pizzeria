@@ -125,43 +125,32 @@
 
     initOrderForm() {
       const thisProduct = this;
-      // console.log('initOrderForm')
+      console.log('initOrderForm')
 
       thisProduct.form.addEventListener('submit', function (event) {
         event.preventDefault();
-        // console.log('submit called')
         thisProduct.processOrder();
       });
 
       for (let input of thisProduct.formInputs) {
         input.addEventListener('change', function () {
-          // console.log('change called')
           thisProduct.processOrder();
         });
       }
 
       thisProduct.cartButton.addEventListener('click', function (event) {
         event.preventDefault();
-        // console.log('cart button clicked')
         thisProduct.processOrder();
       });
 
     }
     processOrder() {
       const thisProduct = this;
-      // console.log('processOrder')
-      const tabWithProperies = [];
+      console.log('processOrder')
+
       // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
       const formData = utils.serializeFormToObject(thisProduct.form);
-      for (const property in formData) {
-        tabWithProperies.push(...formData[property]);
-        // console.log('formData[property]: ', formData[property]);
-      }
-      // console.log('tabWithProperies ', tabWithProperies);
-
       // console.log('formData', formData);
-
-      // console.log('thisProduct.data', thisProduct.data);
 
       // set price to default price
       let price = thisProduct.data.price;
@@ -171,38 +160,17 @@
       for (let paramId in thisProduct.data.params) {
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
+        // console.log(paramId, param);
 
-        // console.log(param);
-        // console.log('formData[paramId]', formData[paramId])
-
-        // console.log(thisProduct.data.default)
-        // console.log(param.options);
         // for every option in this category
         for (let optionId in param.options) {
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
-          // console.log('-------------')
-          // console.log('optionId ', optionId);
-          // console.log('-------------')
-          // console.log('option ', option);
-          // (console.log(option.default))
-          if (formData[paramId] && formData[paramId].includes(optionId)) {
-            // check if the option is not default
-            if (!option.default) {
-              price = price + option.price;
-            }
-          } else {
-            // check if the option is default
-            if (option.default) {
-              price = price - option.price;
-            }
-          }
+          // console.log(optionId, option);
 
 
-          // if (option.default == "true") {
-          // price = price + option.price;
-          // console.log(option.price)
-          // console.log('formData: ', formData[paramId])
+
+
         }
       }
 
@@ -224,10 +192,7 @@
       // console.log('thisApp.data:', thisApp.data.products);
 
       for (let productData in thisApp.data.products) {
-
-
         new Product(productData, thisApp.data.products[productData]);
-
       }
     },
 

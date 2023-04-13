@@ -50,6 +50,7 @@
 
   const templates = {
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
+
   };
 
   class Product {
@@ -58,6 +59,7 @@
 
       thisProduct.id = id;
       thisProduct.data = data;
+
 
       thisProduct.renderInMenu();
       thisProduct.getElements();
@@ -72,13 +74,13 @@
 
       /* generate HTML based on template */
       const generatedHTML = templates.menuProduct(thisProduct.data);
-
       /* create element using utils.createElementFromHTML */
       thisProduct.element = utils.createDOMFromHTML(generatedHTML);
 
+
       /* find menu container */
       const menuContainer = document.querySelector(select.containerOf.menu);
-
+      // console.log(menuContainer)
       // /* add element to menu */
       menuContainer.appendChild(thisProduct.element);
     }
@@ -96,6 +98,10 @@
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
 
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+
+
       // console.log("cena:" + thisProduct.priceElem)
     }
 
@@ -150,33 +156,26 @@
     processOrder() {
       const thisProduct = this;
       // console.log('processOrder')
-      const tabWithProperies = [];
-      // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
       const formData = utils.serializeFormToObject(thisProduct.form);
-      for (const property in formData) {
-        tabWithProperies.push(...formData[property]);
-        // console.log('formData[property]: ', formData[property]);
-      }
-      // console.log('tabWithProperies ', tabWithProperies);
 
-      // console.log('formData', formData);
+      console.log('formData', formData);
 
       // console.log('thisProduct.data', thisProduct.data);
 
       // set price to default price
       let price = thisProduct.data.price;
-      // console.log(price);
+      // console.log('mordoooo', thisProduct);
 
       // for every category (param)...
       for (let paramId in thisProduct.data.params) {
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
 
-        // console.log(param);
+        // console.log(thisProduct.data.params);
         // console.log('formData[paramId]', formData[paramId])
 
         // console.log(thisProduct.data.default)
-        // console.log(param.options);
+
         // for every option in this category
         for (let optionId in param.options) {
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
@@ -186,7 +185,13 @@
           // console.log('-------------')
           // console.log('option ', option);
           // (console.log(option.default))
+
           if (formData[paramId] && formData[paramId].includes(optionId)) {
+
+            console.log('KATEGORIA:', paramId);
+            console.log('ZAZNACZONA OPCJA:', optionId);
+            console.log('SCIEZKA DO IMGWRAPPERA:', thisProduct.imageWrapper)
+            console.log('LISTA ZAZNACZONYCH SKLADNIKOW:', formData[paramId])
             // check if the option is not default
             if (!option.default) {
               price = price + option.price;
@@ -198,11 +203,20 @@
             }
           }
 
+          let imageSelector = "." + paramId + "-" + optionId;
+          console.log('imageSelector', imageSelector);
+          let image = thisProduct.imageWrapper.querySelector(imageSelector);
+          console.log('image:', image);
+          console.log('ZAZNACZONA OPCJA:', optionId);
+
+
+          // image.classList.toggle('active');
+
 
           // if (option.default == "true") {
           // price = price + option.price;
           // console.log(option.price)
-          // console.log('formData: ', formData[paramId])
+
         }
       }
 
@@ -227,7 +241,7 @@
 
 
         new Product(productData, thisApp.data.products[productData]);
-
+        // console.log(thisApp.data);
       }
     },
 
@@ -235,6 +249,7 @@
       const thisApp = this;
 
       thisApp.data = dataSource;
+      // console.log(dataSource);
     },
 
 

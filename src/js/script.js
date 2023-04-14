@@ -40,13 +40,13 @@
     },
   };
 
-  const settings = {
-    amountWidget: {
-      defaultValue: 1,
-      defaultMin: 1,
-      defaultMax: 9,
-    }
-  };
+  // const settings = {
+  //   amountWidget: {
+  //     defaultValue: 1,
+  //     defaultMin: 1,
+  //     defaultMax: 9,
+  //   }
+  // };
 
   const templates = {
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
@@ -158,7 +158,7 @@
       // console.log('processOrder')
       const formData = utils.serializeFormToObject(thisProduct.form);
 
-      console.log('formData', formData);
+      // console.log('formData', formData);
 
       // console.log('thisProduct.data', thisProduct.data);
 
@@ -185,29 +185,48 @@
           // console.log('-------------')
           // console.log('option ', option);
           // (console.log(option.default))
+          let imageSelector = '.' + paramId + '-' + optionId;
+          let image = thisProduct.imageWrapper.querySelector(imageSelector);
+          // image.classList.toggle('active');
+          const isSelected = formData[paramId] && formData[paramId].includes(optionId);
 
-          if (formData[paramId] && formData[paramId].includes(optionId)) {
 
-            console.log('KATEGORIA:', paramId);
-            console.log('ZAZNACZONA OPCJA:', optionId);
-            console.log('SCIEZKA DO IMGWRAPPERA:', thisProduct.imageWrapper)
-            console.log('LISTA ZAZNACZONYCH SKLADNIKOW:', formData[paramId])
-            // check if the option is not default
+          if (isSelected) {
+            // console.log('KATEGORIA:', paramId);
+            // console.log('ZAZNACZONA OPCJA:', optionId);
+            // console.log('SCIEZKA DO IMGWRAPPERA:', thisProduct.imageWrapper);
+            // console.log('LISTA ZAZNACZONYCH SKLADNIKOW:', formData[paramId]);
+            // // check if the option is not default
             if (!option.default) {
               price = price + option.price;
+              if (image) {
+                image.classList.add('active');
+              }
+            }
+            if (option.default) {
+              if (image) {
+                image.classList.add('active');
+              }
             }
           } else {
             // check if the option is default
             if (option.default) {
               price = price - option.price;
+              if (image) {
+                image.classList.remove('active');
+              }
+            }
+            if (!option.default) {
+              if (image) {
+                image.classList.remove('active');
+              }
             }
           }
 
-          let imageSelector = "." + paramId + "-" + optionId;
-          console.log('imageSelector', imageSelector);
-          let image = thisProduct.imageWrapper.querySelector(imageSelector);
-          console.log('image:', image);
-          console.log('ZAZNACZONA OPCJA:', optionId);
+          // console.log('imageSelector', imageSelector);
+          // let image = thisProduct.imageWrapper.querySelector(imageSelector);
+          // console.log('image:', image);
+          // console.log('ZAZNACZONA OPCJA:', optionId);
 
 
           // image.classList.toggle('active');
@@ -218,16 +237,13 @@
           // console.log(option.price)
 
         }
+        // update calculated price in the HTML
+        thisProduct.priceElem.innerHTML = price;
       }
 
-      // update calculated price in the HTML
-      thisProduct.priceElem.innerHTML = price;
     }
 
   }
-
-
-
 
   const app = {
 

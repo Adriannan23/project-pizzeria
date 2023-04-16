@@ -43,7 +43,20 @@
   const templates = {
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
 
+
+
   };
+
+  const settings = {
+    amountWidget: {
+      defaultValue: 1,
+      defaultMin: 1,
+      defaultMax: 9,
+
+    }
+  };
+  console.log(settings.amountWidget.defaultMax)
+
 
   class Product {
     constructor(id, data) {
@@ -204,7 +217,6 @@
         // update calculated price in the HTML
         thisProduct.priceElem.innerHTML = price;
       }
-
     }
 
   }
@@ -215,9 +227,10 @@
 
       // console.log('thisWidget:', thisWidget);
       // console.log('constructor arguments:', element);
+
       thisWidget.getElements(element);
       thisWidget.setValue(thisWidget.input.value);
-
+      thisWidget.initActions();
     }
 
     getElements(element) {
@@ -227,7 +240,7 @@
       // console.log(element);
 
       thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
-      console.log('thisWidget.input: ', thisWidget.input);
+      // console.log('thisWidget.input: ', thisWidget.input);
 
       thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
       // console.log("thisWidget.linkDecrease: ", thisWidget.linkDecrease);
@@ -245,21 +258,40 @@
       // jesli ten warunek zostanie spełniony, to newValue ma nową wartość, którą dopisujemy do inputu.
       if (thisWidget.value !== newValue && !isNaN(newValue)) {
         thisWidget.value = newValue;
+
       }
-
-
-      thisWidget.value = newValue;
-      console.log('newValue: ', newValue);
 
       thisWidget.input.value = thisWidget.value;
       console.log('thisWidget.value: ', thisWidget.value);
 
+      if (thisWidget.value >= settings.amountWidget.defaultMax) {
+        thisWidget.value = settings.amountWidget.defaultMax
+      }
+
+      if (thisWidget.value < settings.amountWidget.defaultMin) {
+        thisWidget.value = settings.amountWidget.defaultMin
+      }
     }
 
     initActions() {
-      // thisWidget.input.addEventListener("change", setValue(thisWidget.input.value));
-      // thisWidget.linkDecrease.addEventListener("click", preventDefault());
-      // ----------tuuu
+
+      const thisWidget = this;
+
+
+      thisWidget.input.addEventListener('change', function () {
+        thisWidget.setValue(thisWidget.input.value);
+        // console.log('change')
+      });
+
+      thisWidget.linkDecrease.addEventListener('click', function (event) {
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value - 1);
+      });
+
+      thisWidget.linkIncrease.addEventListener('click', function (event) {
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value + 1);
+      });
 
     }
   }

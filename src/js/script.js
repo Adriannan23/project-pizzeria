@@ -80,7 +80,11 @@
     initAmountWidget() {
       const thisProduct = this;
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+      thisProduct.amountWidgetElem.addEventListener('updated', function () {
+        thisProduct.processOrder();
+      })
     }
+
 
     renderInMenu() {
       const thisProduct = this;
@@ -271,6 +275,8 @@
       if (thisWidget.value < settings.amountWidget.defaultMin) {
         thisWidget.value = settings.amountWidget.defaultMin
       }
+      thisWidget.announce();
+
     }
 
     initActions() {
@@ -293,6 +299,13 @@
         thisWidget.setValue(thisWidget.value + 1);
       });
 
+    }
+
+    announce() {
+      const thisWidget = this;
+
+      const event = new Event('updated');
+      thisWidget.element.dispatchEvent(event);
     }
   }
 

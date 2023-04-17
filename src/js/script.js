@@ -238,7 +238,7 @@
       // console.log('constructor arguments:', element);
 
       thisWidget.getElements(element);
-      thisWidget.setValue(thisWidget.input.value);
+      thisWidget.setValue(settings.amountWidget.defaultValue);
       thisWidget.initActions();
     }
 
@@ -291,7 +291,7 @@
 
       thisWidget.input.addEventListener('change', function () {
         thisWidget.setValue(thisWidget.input.value);
-        // console.log('change')
+
       });
 
       thisWidget.linkDecrease.addEventListener('click', function (event) {

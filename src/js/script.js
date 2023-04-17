@@ -55,7 +55,7 @@
 
     }
   };
-  console.log(settings.amountWidget.defaultMax)
+  console.log(settings.amountWidget.defaultMax);
 
 
   class Product {
@@ -82,7 +82,7 @@
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
       thisProduct.amountWidgetElem.addEventListener('updated', function () {
         thisProduct.processOrder();
-      })
+      });
     }
 
 
@@ -166,6 +166,7 @@
 
     }
     processOrder() {
+      console.log('odpalam process order');
       const thisProduct = this;
       const formData = utils.serializeFormToObject(thisProduct.form);
 
@@ -218,9 +219,13 @@
           }
 
         }
-        // update calculated price in the HTML
-        thisProduct.priceElem.innerHTML = price;
+
       }
+
+      /* multiply price by amount */
+      price = price * thisProduct.amountWidget.value;
+      // update calculated price in the HTML
+      thisProduct.priceElem.innerHTML = price;
     }
 
   }
@@ -265,18 +270,18 @@
 
       }
 
+
       thisWidget.input.value = thisWidget.value;
       console.log('thisWidget.value: ', thisWidget.value);
 
       if (thisWidget.value >= settings.amountWidget.defaultMax) {
-        thisWidget.value = settings.amountWidget.defaultMax
+        thisWidget.value = settings.amountWidget.defaultMax;
       }
 
       if (thisWidget.value < settings.amountWidget.defaultMin) {
-        thisWidget.value = settings.amountWidget.defaultMin
+        thisWidget.value = settings.amountWidget.defaultMin;
       }
       thisWidget.announce();
-
     }
 
     initActions() {

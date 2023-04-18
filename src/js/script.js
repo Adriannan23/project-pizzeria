@@ -118,7 +118,7 @@
         params[paramId] = {
           label: param.label,
           options: {}
-        }
+        };
         // console.log('params[paramId]', params[paramId])
         // for every option in this category
         for (let optionId in param.options) {
@@ -138,11 +138,7 @@
 
       }
       return params;
-      console.log(params)
     }
-
-
-
 
     prepareCartProduct() {
       const thisProduct = this;

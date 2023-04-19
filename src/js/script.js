@@ -416,6 +416,16 @@
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
 
       thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
+
+
+      thisCart.dom.deliveryFee = thisCart.dom.wrapper.querySelector(select.cart.deliveryFee);
+
+      thisCart.dom.subtotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice);
+
+      thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
+
+      thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
+
     }
 
     initActions() {
@@ -455,8 +465,8 @@
 
         thisCart.totalNumber += cartProduct.amount;
         thisCart.subtotalPrice += cartProduct.price;
-        console.log('totalNumber', thisCart.totalNumber);
-        console.log('subtotalPrice', thisCart.subtotalPrice);
+        // console.log('totalNumber', thisCart.totalNumber);
+        // console.log('subtotalPrice', thisCart.subtotalPrice);
       }
 
       // We'll be using this outside of this 'update' method - in the method that will be responsible for sending data to server.
@@ -465,7 +475,15 @@
       if (thisCart.subtotalPrice > 0) {
         thisCart.totalPrice = thisCart.deliveryFee + thisCart.subtotalPrice;
       }
-      console.log(thisCart.totalPrice)
+      // console.log('thisCart.totalPrice', thisCart.totalPrice)
+
+      thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
+      thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
+
+      for (const totalPriceSelector of thisCart.dom.totalPrice) {
+
+        totalPriceSelector.innerHTML = thisCart.totalPrice;
+      }
     }
 
   }

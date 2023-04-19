@@ -387,7 +387,9 @@
     announce() {
       const thisWidget = this;
 
-      const event = new Event('updated');
+      const event = new CustomEvent('updated', {
+        bubbles: true
+      });
       thisWidget.element.dispatchEvent(event);
     }
   }
@@ -435,6 +437,26 @@
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
 
+      thisCart.dom.productList.addEventListener('updated', function () {
+        thisCart.update();
+      });
+
+      thisCart.dom.productList.addEventListener('remove', function (event) {
+        thisCart.remove(event.detail.cartProduct);
+      });
+
+    }
+
+    remove(cancel) {
+
+      const thisCart = this;
+
+      cancel.dom.wrapper.remove();
+
+      const indexOfProduct = thisCart.products.indexOf(cancel);
+      thisCart.products.splice(indexOfProduct, 1);
+
+      thisCart.update();
     }
 
 
@@ -449,7 +471,7 @@
 
       thisCart.dom.productList.appendChild(thisCart.generatedDOM);
       thisCart.products.push(new CartProduct(menuProduct, thisCart.generatedDOM));
-      console.log('thisCart.products', thisCart.products);
+
       thisCart.update();
     }
 
@@ -465,8 +487,7 @@
 
         thisCart.totalNumber += cartProduct.amount;
         thisCart.subtotalPrice += cartProduct.price;
-        // console.log('totalNumber', thisCart.totalNumber);
-        // console.log('subtotalPrice', thisCart.subtotalPrice);
+
       }
 
       // We'll be using this outside of this 'update' method - in the method that will be responsible for sending data to server.
@@ -475,7 +496,8 @@
       if (thisCart.subtotalPrice > 0) {
         thisCart.totalPrice = thisCart.deliveryFee + thisCart.subtotalPrice;
       }
-      // console.log('thisCart.totalPrice', thisCart.totalPrice)
+
+
 
       thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
       thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
@@ -485,6 +507,7 @@
         totalPriceSelector.innerHTML = thisCart.totalPrice;
       }
     }
+
 
   }
 
@@ -503,6 +526,7 @@
 
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget();
+      thisCartProduct.initActions();
 
     }
 
@@ -526,6 +550,33 @@
         thisCartProduct.price = thisCartProduct.amount * thisCartProduct.priceSingle;
         thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
 
+      });
+    }
+
+    remove() {
+      const thisCartProduct = this;
+
+      const event = new CustomEvent('remove', {
+        bubbles: true,
+        detail: {
+          cartProduct: thisCartProduct,
+        },
+      });
+
+      thisCartProduct.dom.wrapper.dispatchEvent(event);
+      // console.log('click?')
+    }
+
+    initActions() {
+
+      const thisCartProduct = this;
+
+      thisCartProduct.dom.edit.addEventListener('click', function (event) {
+        event.preventDefault;
+      });
+      thisCartProduct.dom.remove.addEventListener('click', function (event) {
+        event.preventDefault;
+        thisCartProduct.remove();
       });
     }
   }

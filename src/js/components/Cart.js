@@ -4,7 +4,6 @@ import settings from './settings.js';
 import CartProduct from './comopnents/CartProduct.js';
 
 class Cart {
-
     constructor(element) {
 
         const thisCart = this;

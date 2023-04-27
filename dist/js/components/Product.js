@@ -1,5 +1,5 @@
 import AmountWidget from './AmountWidget.js';
-import { settings, select, templates, } from '../settings.js';
+import { select, templates, classNames } from '../settings.js';
 import { utils } from '../utils.js';
 
 class Product {
@@ -9,15 +9,12 @@ class Product {
     thisProduct.id = id;
     thisProduct.data = data;
 
-
     thisProduct.renderInMenu();
     thisProduct.getElements();
     thisProduct.initAccordion();
     thisProduct.initOrderForm();
     thisProduct.initAmountWidget();
     thisProduct.processOrder();
-
-
   }
 
   prepareCartProductParams() {
@@ -145,7 +142,7 @@ class Product {
 
       /* if there is active product and it's not thisProduct.element, remove class active from it */
       if (activeProduct && activeProduct != thisProduct.element) {
-        activeProduct.classList.remove(settings.classNames.menuProduct.wrapperActive);
+        activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
       }
       /* toggle active class on thisProduct.element */
       thisProduct.element.classList.toggle('active');

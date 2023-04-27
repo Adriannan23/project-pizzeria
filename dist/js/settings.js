@@ -38,8 +38,12 @@ export const select = {
         output: '.output',
       },
     },
+  },
 
-
+  booking: {
+    peopleAmount: '.people-amount',
+    hoursAmount: '.hours-amount',
+    tables: '.floor-plan .table',
   },
   nav: {
     links: '.main-nav a',
@@ -62,6 +66,9 @@ export const select = {
     edit: '[href="#edit"]',
     remove: '[href="#remove"]',
   },
+
+
+
 };
 
 export const classNames = {
@@ -87,7 +94,7 @@ export const classNames = {
 export const templates = {
   menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
-
+  bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),
 
 };
 

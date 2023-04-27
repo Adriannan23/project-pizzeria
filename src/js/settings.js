@@ -28,16 +28,22 @@ export const select = {
       input: 'input.amount',
       linkDecrease: 'a[href="#less"]',
       linkIncrease: 'a[href="#more"]',
+      datePicker: {
+        wrapper: '.date-picker',
+        input: `input[name="date"]`,
+      },
+      hourPicker: {
+        wrapper: '.hour-picker',
+        input: 'input[type="range"]',
+        output: '.output',
+      },
     },
-    datePicker: {
-      wrapper: '.date-picker',
-      input: `input[name="date"]`,
-    },
-    hourPicker: {
-      wrapper: '.hour-picker',
-      input: 'input[type="range"]',
-      output: '.output',
-    },
+  },
+
+  booking: {
+    peopleAmount: '.people-amount',
+    hoursAmount: '.hours-amount',
+    tables: '.floor-plan .table',
   },
   nav: {
     links: '.main-nav a',
@@ -60,6 +66,9 @@ export const select = {
     edit: '[href="#edit"]',
     remove: '[href="#remove"]',
   },
+
+
+
 };
 
 export const classNames = {

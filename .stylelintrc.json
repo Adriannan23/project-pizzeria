@@ -21,6 +21,5 @@
     "scss/selector-no-redundant-nesting-selector": true,
     "scss/no-duplicate-dollar-variables": true,
     "scss/no-global-function-names": null
-  },
-  "scss/at-extend-no-missing-placeholder": null
+  }
 }

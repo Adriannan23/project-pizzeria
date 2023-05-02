@@ -19,7 +19,7 @@ const app = {
         const id = clickedElement.getAttribute('href').replace('#', '');
 
         // run thisApp.activatePage with that id
-
+        thisApp.activatePage(id);
       });
     }
   },

@@ -101,7 +101,6 @@ class Cart {
     thisCart.totalNumber = 0;
     thisCart.subtotalPrice = 0;
 
-
     for (let cartProduct of thisCart.products) {
 
       thisCart.totalNumber += cartProduct.amount;
@@ -115,7 +114,9 @@ class Cart {
     if (thisCart.subtotalPrice > 0) {
       thisCart.totalPrice = thisCart.deliveryFee + thisCart.subtotalPrice;
     }
-
+    else {
+      thisCart.deliveryFee = 0;
+    }
 
 
     thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;

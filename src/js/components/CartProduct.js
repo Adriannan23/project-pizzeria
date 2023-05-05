@@ -43,8 +43,12 @@ class CartProduct {
       thisCartProduct.price = thisCartProduct.amount * thisCartProduct.priceSingle;
       thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
 
+      console.log(thisCartProduct.amount);
+
+
     });
   }
+
 
   remove() {
     const thisCartProduct = this;
@@ -70,8 +74,10 @@ class CartProduct {
     thisCartProduct.dom.remove.addEventListener('click', function (event) {
       event.preventDefault;
       thisCartProduct.remove();
+      console.log('thisCartProduct.amountWidget.value,', thisCartProduct.amountWidget.value);
     });
   }
+
 
   getData() {
 
@@ -90,9 +96,13 @@ class CartProduct {
       'name': thisCartProduct.name,
 
       'params': thisCartProduct.params,
+
+
     };
     return productCartData;
+
   }
 }
+
 
 export default CartProduct;

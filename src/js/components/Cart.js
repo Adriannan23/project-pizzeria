@@ -104,9 +104,11 @@ class Cart {
     for (let cartProduct of thisCart.products) {
 
       thisCart.totalNumber += cartProduct.amount;
-      thisCart.subtotalPrice += cartProduct.price;
+      thisCart.subtotalPrice += cartProduct.priceSingle;
 
     }
+
+
 
     // We'll be using this outside of this 'update' method - in the method that will be responsible for sending data to server.
     thisCart.totalPrice = 0;

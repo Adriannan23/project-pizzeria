@@ -43,7 +43,6 @@ class CartProduct {
       thisCartProduct.price = thisCartProduct.amount * thisCartProduct.priceSingle;
       thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
 
-      console.log(thisCartProduct.amount);
 
 
     });
@@ -74,7 +73,6 @@ class CartProduct {
     thisCartProduct.dom.remove.addEventListener('click', function (event) {
       event.preventDefault;
       thisCartProduct.remove();
-      console.log('thisCartProduct.amountWidget.value,', thisCartProduct.amountWidget.value);
     });
   }
 

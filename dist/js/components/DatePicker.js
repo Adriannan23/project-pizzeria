@@ -1,16 +1,16 @@
 import BaseWidget from '../components/BaseWidget.js';
 import utils from '../utils.js';
-import {select, settings} from '../settings.js';
+import { select, settings } from '../settings.js';
 
-class DatePicker extends BaseWidget{
-  constructor(wrapper){
+class DatePicker extends BaseWidget {
+  constructor(wrapper) {
     super(wrapper, utils.dateToStr(new Date()));
     const thisWidget = this;
 
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.datePicker.input);
     thisWidget.initPlugin();
   }
-  initPlugin(){
+  initPlugin() {
     const thisWidget = this;
 
     thisWidget.minDate = new Date();
@@ -24,24 +24,24 @@ class DatePicker extends BaseWidget{
         firstDayOfWeek: 1
       },
       disable: [
-        function(date) {
+        function (date) {
           return (date.getDay() === 1);
         }
       ],
-      onChange: function(selectedDates, dateStr) {
+      onChange: function (selectedDates, dateStr) {
         thisWidget.value = dateStr;
       },
     });
   }
-  parseValue(value){
+  parseValue(value) {
     return value;
   }
 
-  isValid(){
+  isValid() {
     return true;
   }
 
-  renderValue(){
+  renderValue() {
 
   }
 }

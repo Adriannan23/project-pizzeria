@@ -6,6 +6,7 @@ import HourPicker from './HourPicker.js';
 
 
 class Booking {
+
   constructor(element) {
 
     const thisBooking = this;
@@ -13,6 +14,7 @@ class Booking {
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
+    thisBooking.selectedTable = '';
   }
 
   getData() {
@@ -49,7 +51,7 @@ class Booking {
       eventsRepeat: settings.db.url + '/' + settings.db.event + '?' + params.eventsRepeat.join('&'),
     };
 
-    console.log(urls);
+    // console.log(urls);
 
     Promise.all([
       fetch(urls.booking),
@@ -74,7 +76,7 @@ class Booking {
         // console.log('eventsCurrent', eventsCurrent);
         // console.log('eventsRepeat', eventsRepeat);
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
-        console.log('eventsCurrentResponse', eventsCurrent);
+        // console.log('eventsCurrentResponse', eventsCurrent);
 
       });
   }
@@ -105,6 +107,7 @@ class Booking {
     }
 
     // console.log('thisBooking.booked', thisBooking.booked);
+    thisBooking.updateDOM();
   }
 
   makeBooked(date, hour, duration, table) {
@@ -133,7 +136,7 @@ class Booking {
     const thisBooking = this;
 
     thisBooking.date = thisBooking.datePicker.value;
-    thisBooking.hour = utils.hourToNumber(thisBooking.hoursPicker.value);
+    thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
 
     let allAvailable = false;
 
@@ -183,6 +186,33 @@ class Booking {
       select.widgets.hourPicker.wrapper);
 
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+
+    thisBooking.dom.tablesWrapper = thisBooking.dom.wrapper.querySelector(select.booking.tablesWrapper);
+  }
+
+  initTables(event) {
+    const thisBooking = this;
+
+    if (event.target.classList.contains('table')) {
+      // console.log('event', event.target);
+
+      if (event.target.classList.contains('booked')) {
+        alert('Table already booked!');
+      } else {
+        if (!event.target.classList.contains('selected')) {
+          for (let table of thisBooking.dom.tables) {
+            table.classList.remove('selected');
+          }
+          event.target.classList.add('selected');
+          let tableId = event.target.getAttribute(settings.booking.tableIdAttribute);
+          if (!isNaN(tableId)) {
+            tableId = parseInt(tableId);
+          }
+          thisBooking.selectedTable = tableId;
+          // console.log(thisBooking.selectedTable);
+        }
+      }
+    }
   }
 
   initWidgets() {
@@ -200,6 +230,14 @@ class Booking {
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
     thisBooking.dom.hourPicker.addEventListener('updated', function () { });
 
+    // thisBooking.dom.wrapper.addEventListener('updated', function () {
+    //   thisBooking.updateDOM();
+    // });
+
+    thisBooking.dom.tablesWrapper.addEventListener('click', function (event) {
+      thisBooking.initTables(event);
+
+    });
   }
 }
 

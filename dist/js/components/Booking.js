@@ -14,7 +14,8 @@ class Booking {
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
-    thisBooking.selectedTable = '';
+    thisBooking.selectedTable = null;
+    thisBooking.starters = [];
   }
 
   getData() {
@@ -129,6 +130,7 @@ class Booking {
       thisBooking.booked[date][hourBlock].push(table);
 
     }
+
   }
 
 
@@ -190,6 +192,15 @@ class Booking {
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
 
     thisBooking.dom.tablesWrapper = thisBooking.dom.wrapper.querySelector(select.booking.tablesWrapper);
+
+    // thisBooking.dom.starters = thisBooking.dom.wrapper.querySelector(select.booking.starters);
+
+    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
+
+    thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
+
+    thisBooking.dom.orderButton = thisBooking.dom.wrapper.querySelector(select.booking.orderButton);
+
   }
 
   initTables(event) {
@@ -212,8 +223,9 @@ class Booking {
         }
         else { event.target.classList.remove('selected'); }
       }
-      // console.log(thisBooking.selectedTable);
     }
+    console.log('thisBooking.dom.address.value', thisBooking.dom.phone.value);
+
   }
 
   resetTables() {
@@ -222,6 +234,45 @@ class Booking {
       table.classList.remove('selected');
     }
   }
+  sendBooking() {
+    console.log('wywoluje sie');
+    const thisBooking = this;
+    const url = settings.db.url + '/' + settings.db.booking;
+
+    const payload = {
+      date: thisBooking.date,
+      hour: thisBooking.hour,
+      table: thisBooking.selectedTable,
+      duration: thisBooking.hoursAmount.correctValue,
+      ppl: thisBooking.peopleAmount.correctValue,
+      starters: thisBooking.starters,
+      phone: thisBooking.dom.phone.value,
+      address: thisBooking.dom.address.value,
+    };
+
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Booking sent:', data);
+      })
+      .catch(error => {
+        console.error('Error while sending booking:', error);
+      });
+
+  }
+
 
   initWidgets() {
     const thisBooking = this;
@@ -236,7 +287,7 @@ class Booking {
     thisBooking.dom.datePicker.addEventListener('updated', function () { });
 
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
-    thisBooking.dom.hourPicker.addEventListener('updated', function () { });
+    thisBooking.dom.hourPicker.addEventListener('click', function () { });
 
     thisBooking.dom.wrapper.addEventListener('updated', function () {
       thisBooking.updateDOM();
@@ -245,6 +296,11 @@ class Booking {
     thisBooking.dom.tablesWrapper.addEventListener('click', function (event) {
       thisBooking.initTables(event);
 
+    });
+
+    thisBooking.dom.orderButton.addEventListener('click', function () {
+      thisBooking.sendBooking();
+      console.log('robi sie');
     });
   }
 }

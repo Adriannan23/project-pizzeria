@@ -132,6 +132,7 @@ class Cart {
   sendOrder() {
     const thisCart = this;
     const url = settings.db.url + '/' + settings.db.orders;
+    console.log('url', url);
 
     const payload = {
       address: thisCart.dom.address.value,
@@ -160,7 +161,7 @@ class Cart {
       .then(function (response) {
         return response.json();
       }).then(function (parsedResponse) {
-        console.log('parsedResponse', parsedResponse);
+        // console.log('parsedResponse', parsedResponse);
       });
   }
 

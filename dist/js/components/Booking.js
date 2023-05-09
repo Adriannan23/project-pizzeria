@@ -15,7 +15,7 @@ class Booking {
     thisBooking.initWidgets();
     thisBooking.getData();
     thisBooking.selectedTable = null;
-    thisBooking.starters = [];
+    thisBooking.startersTab = [];
   }
 
   getData() {
@@ -138,6 +138,7 @@ class Booking {
     // console.log('updateDOM');
     const thisBooking = this;
 
+
     thisBooking.date = thisBooking.datePicker.value;
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
 
@@ -193,13 +194,17 @@ class Booking {
 
     thisBooking.dom.tablesWrapper = thisBooking.dom.wrapper.querySelector(select.booking.tablesWrapper);
 
-    // thisBooking.dom.starters = thisBooking.dom.wrapper.querySelector(select.booking.starters);
+    thisBooking.dom.starters = thisBooking.dom.wrapper.querySelector(select.booking.starters);
 
     thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
 
     thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
 
     thisBooking.dom.orderButton = thisBooking.dom.wrapper.querySelector(select.booking.orderButton);
+
+    thisBooking.dom.breadCheckbox = thisBooking.dom.wrapper.querySelector('input[value="bread"]');
+
+    thisBooking.dom.waterCheckbox = thisBooking.dom.wrapper.querySelector('input[value="water"]');
 
   }
 
@@ -224,7 +229,7 @@ class Booking {
         else { event.target.classList.remove('selected'); }
       }
     }
-    console.log('thisBooking.dom.address.value', thisBooking.dom.phone.value);
+    // console.log('thisBooking.dom.address.value', thisBooking.dom.phone.value);
 
   }
 
@@ -235,9 +240,14 @@ class Booking {
     }
   }
   sendBooking() {
-    console.log('wywoluje sie');
+    // console.log('wywoluje sie');
     const thisBooking = this;
     const url = settings.db.url + '/' + settings.db.booking;
+
+    // for (const starter of thisBooking.dom.starters) {
+    //   console.log('starter', starter);
+    // }
+
 
     const payload = {
       date: thisBooking.date,
@@ -245,7 +255,7 @@ class Booking {
       table: thisBooking.selectedTable,
       duration: thisBooking.hoursAmount.correctValue,
       ppl: thisBooking.peopleAmount.correctValue,
-      starters: thisBooking.starters,
+      starters: thisBooking.startersTab,
       phone: thisBooking.dom.phone.value,
       address: thisBooking.dom.address.value,
     };
@@ -300,7 +310,16 @@ class Booking {
 
     thisBooking.dom.orderButton.addEventListener('click', function () {
       thisBooking.sendBooking();
-      console.log('robi sie');
+      // console.log('robi sie');
+    });
+
+    thisBooking.dom.breadCheckbox.addEventListener('click', function () {
+      thisBooking.startersTab.push(thisBooking.dom.breadCheckbox.value);
+      // console.log('thisBooking.startersTab', thisBooking.startersTab);
+    });
+
+    thisBooking.dom.waterCheckbox.addEventListener('click', function () {
+      thisBooking.startersTab.push(thisBooking.dom.waterCheckbox.value);
     });
   }
 }

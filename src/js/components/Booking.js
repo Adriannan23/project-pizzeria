@@ -260,6 +260,8 @@ class Booking {
       address: thisBooking.dom.address.value,
     };
 
+    thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
+
 
     fetch(url, {
       method: 'POST',

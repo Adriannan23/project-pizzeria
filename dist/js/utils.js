@@ -64,7 +64,7 @@ utils.numberToHour = function (number) {
 
 utils.hourToNumber = function (hour) {
   const parts = hour.split(':');
-  console.log('hour', typeof hour);
+  // console.log('hour', typeof hour);
 
   return parseInt(parts[0]) + parseInt(parts[1]) / 60;
 };

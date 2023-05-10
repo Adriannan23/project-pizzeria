@@ -2,7 +2,7 @@ $color-main: #ff6b6b;
 
 .home-style{
   margin: 42px auto;
-  padding: 72px 42px;
+  padding: 30px 30px;
   background: #fff;
   // border-bottom: 1px solid lighten(#000000, 65%);
   border-radius: 4px;
@@ -28,14 +28,29 @@ $color-main: #ff6b6b;
       text-decoration: none;
     }
     h2:hover {
-      transform: scale(1.2);
+      transform: scale(1.1);
       text-decoration: none;
 
     }
 
 }
 
-
+.large {
+  width: 100%;
+  background-color: $color-main;
+  h1 {
+    color: $color-light;
+    position: relative;
+    left: 35%;
+    text-align: justify;
+  }
+  h5 {
+    color: $color-light;
+    position: relative;
+    left: 33%;
+    text-align: justify;
+  }
+}
 
 .order{
   object-fit: cover;
@@ -57,4 +72,22 @@ $color-main: #ff6b6b;
       width: 100%;
       object-fit: cover;
     }
+}
+
+.main-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: space-between;
+}
+
+.main-gallery img {
+  flex:1;
+
+  margin-right: 2px;
+  margin-bottom: 2px;
+
+  width: 150px;
+  height: 150px;
+
 }

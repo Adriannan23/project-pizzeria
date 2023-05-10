@@ -19,6 +19,8 @@ class Home {
     const homeContainer = document.querySelector(select.containerOf.home);
     homeContainer.appendChild(thisHomePage.element);
 
+
+
   }
 
 }

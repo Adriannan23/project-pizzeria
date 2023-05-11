@@ -21,40 +21,54 @@ $base-size: 12px;
 
 // ------------- //
 
+.home-page{
+  max-width: 750px;
+  display: flex;
+  justify-content: center;
+}
+
 .home-style{
+  display: flex;
   margin: 42px auto;
-  padding: 30px 30px;
+  padding: 50px 40px;
   background: #fff;
   border-radius: 4px;
-  max-width: 850px;
+  flex-wrap: wrap;
+
 }
 
 .picture-box-wrapper{
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 600px;
+  width: 700px;
+  height: 160px;
+
+  .box {
+    flex-grow: 1;
+    margin-right: 3px;
+    margin-bottom: 4.5px;
+
+      h2 {
+        top: -120px;
+        left: 90px;
+        position: relative;
+        z-index: 15;
+        color: #fff;
+        text-decoration: none;
+      }
+      h2:hover {
+        transform: scale(1.1);
+        text-decoration: none;
+
+      }
+      a{
+        text-decoration: none;
+      }
+
+  }
+
 }
 
-.box {
-  border-radius: 4px;
-  height: 120px;
-  align-items: center;
-    h2 {
-      top: -95px;
-      left: 80px;
-      position: relative;
-      z-index: 15;
-      color: #fff;
-      text-decoration: none;
-    }
-    h2:hover {
-      transform: scale(1.1);
-      text-decoration: none;
 
-    }
-
-}
 
 .opening {
   width: 100%;

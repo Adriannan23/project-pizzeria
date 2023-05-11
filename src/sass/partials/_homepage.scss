@@ -33,19 +33,20 @@ $base-size: 12px;
   padding: 50px 40px;
   background: #fff;
   border-radius: 4px;
-  flex-wrap: wrap;
+display: block;
 
 }
 
 .picture-box-wrapper{
   display: flex;
   width: 700px;
-  height: 160px;
+  height: 150px;
 
   .box {
     flex-grow: 1;
     margin-right: 3px;
     margin-bottom: 4.5px;
+    font-family: $font-text;
 
       h2 {
         top: -120px;
@@ -72,23 +73,24 @@ $base-size: 12px;
 
 .opening {
   width: 100%;
+  height: 150px;
   background-color: $color-main;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   h2 {
     color: $color-light;
-    position: relative;
-    left: 35%;
-    text-align: justify;
+    margin: 5px 0;
   }
   p {
     color: $color-light;
-    position: relative;
-    left: 33%;
-    text-align: justify;
+    margin: 5px 0;
+
   }
 }
 
 .order{
-  object-fit: cover;
   width: 50%;
   text-decoration: none;
     img {
@@ -101,12 +103,21 @@ $base-size: 12px;
 
 .booking {
   width: 50%;
-  text-decoration: none;
     img {
       height: 100%;
       width: 100%;
       object-fit: cover;
     }
+}
+
+.carousel {
+  margin: 100px 0;
+ height: 400px;
+ object-fit: cover;
+
+button {
+top: 150px;
+}
 }
 
 .main-gallery {

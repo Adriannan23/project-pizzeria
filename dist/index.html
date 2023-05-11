@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="vendor/range-slider.min.css">
-  <link rel="stylesheet" href="/path/to/flickity.css" media="screen">
+  <link rel="stylesheet" href="/vendor/flickity.css" media="screen">
 </head>
 <body>
 
@@ -78,32 +78,50 @@
 
   <script id="template-home-page" type="text/x-handlebars-template">
     <div class = "home-style">
-      <div class ="box-wrapper">
+
+      <div class ="picture-box-wrapper">
         <div class="box order"><a href="#order"><img src="/images/pizza-1.jpg"><h2>ORDER ONLINE</h2></a></div>
         <div class="box booking"><a href="#booking"><img src="/images/pizza-2.jpg"><h2>BOOK A TABLE</h2></a></div>
-        <div class="box large">
-          <h1>OPENING HOURS</h1>
-          <h5>MON-SUN, 12PM-12AM</h5>
-        </div>
       </div>
-      <!-- <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true }'>
-        <div class="carousel-cell">kkkk
+
+        <div class="box opening">
+          <h2>OPENING HOURS</h2>
+          <p>MON-SUN, 12PM-12AM</p>
+        </div>
+
+      <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true }'>
+        <div class="carousel-cell">
           <img src="/images/pizza-3.jpg">
           <h3>Great venue</h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque labore possimus, doloribus, sit ipsa ipsum.</p>
         </div>
-        <div class="carousel-cell"> <img src="/images/pizza-3.jpg"></div>
-        <div class="carousel-cell">...</div>
-      </div> -->
+        <div class="carousel-cell">
+          <img src="/images/pizza-3.jpg">
+          <h3>Great venue</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque labore possimus, doloribus, sit ipsa ipsum.</p>
+        </div>
+        <div class="carousel-cell">
+          <img src="/images/pizza-3.jpg">
+          <h3>Great venue</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque labore possimus, doloribus, sit ipsa ipsum.</p>
+        </div>
+      </div>
 
-      <div class = main-gallery>
+      <div class ="main-gallery">
         <div class="image-container">
-          <img src="/images/pizza-4.jpg" alt="photo 1">
-          <img src="/images/pizza-5.jpg" alt="photo 2">
-          <img src="/images/pizza-6.jpg" alt="photo 3">
-          <img src="/images/pizza-7.jpg" alt="photo 4">
-          <img src="/images/pizza-8.jpg"alt="photo 5">
-          <img src="/images/pizza-9.jpg" alt="photo 6">
+
+          <div class ="row-gallery-1">
+            <img src="/images/pizza-4.jpg" alt="photo 1">
+            <img src="/images/pizza-5.jpg" alt="photo 2">
+            <img src="/images/pizza-6.jpg" alt="photo 3">
+          </div>
+
+          <div class="row-gallery-2">
+            <img src="/images/pizza-7.jpg" alt="photo 4">
+            <img src="/images/pizza-8.jpg"alt="photo 5">
+            <img src="/images/pizza-9.jpg" alt="photo 6">
+          </div>
+
         </div>
       </div>
     </div>
@@ -286,7 +304,7 @@
   <script src="js/app.js" type="module"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="vendor/range-slider.min.js"></script>
-  <script src="/path/to/flickity.pkgd.min.js"></script>
+  <script src="/vendor/flickity.pkgd.min.js"></script>
 
 </body>
 </html>

@@ -40,7 +40,7 @@ $base-size: 12px;
 .picture-box-wrapper{
   display: flex;
   width: 700px;
-  height: 160px;
+  height: 150px;
 
   .box {
     flex-grow: 1;
@@ -54,6 +54,9 @@ $base-size: 12px;
         z-index: 15;
         color: #fff;
         text-decoration: none;
+        // font-weight: bold;
+        font-family: $font-text;
+
       }
       h2:hover {
         transform: scale(1.1);
@@ -68,29 +71,36 @@ $base-size: 12px;
 
 }
 
-
-
 .opening {
   width: 100%;
+  height: 150px;
   background-color: $color-main;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   h2 {
     color: $color-light;
-    position: relative;
-    left: 35%;
-    text-align: justify;
+    margin: 5px 0;
   }
   p {
     color: $color-light;
-    position: relative;
-    left: 33%;
-    text-align: justify;
+    margin: 5px 0;
   }
 }
 
-.order{
-  object-fit: cover;
+.booking {
   width: 50%;
-  text-decoration: none;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+}
+
+.order{
+  width: 50%;
     img {
       height: 100%;
       width: 100%;
@@ -99,30 +109,27 @@ $base-size: 12px;
     }
 }
 
-.booking {
-  width: 50%;
-  text-decoration: none;
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-    }
-}
 
+.carousel{
+  display: flex;
+margin: 200px 0;
+
+}
 .main-gallery {
   display: flex;
   flex-wrap: wrap;
   margin: auto;
   justify-content: space-between;
+
+  img {
+    flex:1;
+
+    margin-right: 2px;
+    margin-bottom: 2px;
+
+    width: 150px;
+    height: 150px;
+
+  }
 }
 
-.main-gallery img {
-  flex:1;
-
-  margin-right: 2px;
-  margin-bottom: 2px;
-
-  width: 150px;
-  height: 150px;
-
-}

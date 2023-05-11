@@ -1,14 +1,35 @@
+$color-warning: #f6b93b;
+$color-danger: #e55039;
+$color-success: #78e08f;
+
+$color-dark: #333;
+$color-light: #fff;
 $color-main: #ff6b6b;
+
+$font-header: 'Oswald', sans-serif;
+$font-text: 'Lato', sans-serif;
+
+$font-light: 300;
+$font-normal: 400;
+$font-semibold: 500;
+$font-bold: 700;
+
+$transition: all .3s;
+$radius: 4px;
+
+$base-size: 12px;
+
+// ------------- //
 
 .home-style{
   margin: 42px auto;
   padding: 30px 30px;
   background: #fff;
-  // border-bottom: 1px solid lighten(#000000, 65%);
   border-radius: 4px;
+  max-width: 850px;
 }
 
-.box-wrapper{
+.picture-box-wrapper{
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -35,16 +56,16 @@ $color-main: #ff6b6b;
 
 }
 
-.large {
+.opening {
   width: 100%;
   background-color: $color-main;
-  h1 {
+  h2 {
     color: $color-light;
     position: relative;
     left: 35%;
     text-align: justify;
   }
-  h5 {
+  p {
     color: $color-light;
     position: relative;
     left: 33%;

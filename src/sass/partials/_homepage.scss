@@ -22,7 +22,7 @@ $base-size: 12px;
 // ------------- //
 
 .home-page{
-  max-width: 750px;
+  max-width: 740px;
   display: flex;
   justify-content: center;
 }
@@ -39,8 +39,8 @@ display: block;
 
 .picture-box-wrapper{
   display: flex;
-  width: 700px;
-  height: 150px;
+  width: 100%;
+  height: 120px;
 
   .box {
     flex-grow: 1;
@@ -49,7 +49,7 @@ display: block;
     font-family: $font-text;
 
       h2 {
-        top: -120px;
+        top: -100px;
         left: 90px;
         position: relative;
         z-index: 15;
@@ -73,7 +73,7 @@ display: block;
 
 .opening {
   width: 100%;
-  height: 150px;
+  height: 120px;
   background-color: $color-main;
   display: flex;
   flex-direction: column;
@@ -82,6 +82,7 @@ display: block;
   h2 {
     color: $color-light;
     margin: 5px 0;
+
   }
   p {
     color: $color-light;
@@ -112,28 +113,60 @@ display: block;
 
 .carousel {
   margin: 100px 0;
- height: 400px;
+ height: 200px;
  object-fit: cover;
+ display: flex;
+ align-items: center;
+justify-content: center;
+
+
+ .main-carousel {
+  width: 500px;
+  height: 335px;
+  object-fit: cover;
+
+ }
 
 button {
 top: 150px;
+}
+
+img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+
 }
 }
 
 .main-gallery {
   display: flex;
-  flex-wrap: wrap;
-  margin: auto;
-  justify-content: space-between;
-}
+  align-items: center;
+  justify-content: center;
 
-.main-gallery img {
-  flex:1;
-
-  margin-right: 2px;
-  margin-bottom: 2px;
-
-  width: 150px;
-  height: 150px;
+.row-gallery-1{
+    // display: flex;
 
 }
+
+.row-gallery-2{
+  // display: flex;
+
+}
+  // display: flex;
+
+
+
+  // img {
+  //   margin-right: 2px;
+  //   margin-bottom: 2px;
+  //   width: 150px;
+  //   height: 150px;
+  // }
+
+}
+
+.flickity-page-dots{
+top:270px;
+}
+

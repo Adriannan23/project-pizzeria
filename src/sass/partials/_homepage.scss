@@ -55,6 +55,9 @@ display: block;
         z-index: 15;
         color: #fff;
         text-decoration: none;
+        // font-weight: bold;
+        font-family: $font-text;
+
       }
       h2:hover {
         transform: scale(1.1);
@@ -69,12 +72,11 @@ display: block;
 
 }
 
-
-
 .opening {
   width: 100%;
   height: 150px;
   background-color: $color-main;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -87,12 +89,22 @@ display: block;
     color: $color-light;
     margin: 5px 0;
 
+
   }
 }
 
 .order{
+
   width: 50%;
-  text-decoration: none;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+}
+
+.order{
+  width: 50%;
     img {
       height: 100%;
       width: 100%;
@@ -101,14 +113,6 @@ display: block;
     }
 }
 
-.booking {
-  width: 50%;
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-    }
-}
 
 .carousel {
   margin: 100px 0;
@@ -120,20 +124,22 @@ top: 150px;
 }
 }
 
+
 .main-gallery {
   display: flex;
   flex-wrap: wrap;
   margin: auto;
   justify-content: space-between;
+
+  img {
+    flex:1;
+
+    margin-right: 2px;
+    margin-bottom: 2px;
+
+    width: 150px;
+    height: 150px;
+
+  }
 }
 
-.main-gallery img {
-  flex:1;
-
-  margin-right: 2px;
-  margin-bottom: 2px;
-
-  width: 150px;
-  height: 150px;
-
-}

@@ -118,7 +118,7 @@ class Booking {
       thisBooking.booked[date] = {};
     }
 
-    const startHour = utils.hourToNumber(hour);
+    const startHour = utils.hourToNumber(hour.toString());
 
     for (let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5) {
 
@@ -260,8 +260,8 @@ class Booking {
       address: thisBooking.dom.address.value,
     };
 
+    console.log('payload', payload);
     thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
-
 
     fetch(url, {
       method: 'POST',

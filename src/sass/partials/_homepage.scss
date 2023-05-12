@@ -33,7 +33,7 @@ $base-size: 12px;
   padding: 50px 40px;
   background: #fff;
   border-radius: 4px;
-  flex-wrap: wrap;
+display: block;
 
 }
 
@@ -46,6 +46,7 @@ $base-size: 12px;
     flex-grow: 1;
     margin-right: 3px;
     margin-bottom: 4.5px;
+    font-family: $font-text;
 
       h2 {
         top: -120px;
@@ -87,10 +88,13 @@ $base-size: 12px;
   p {
     color: $color-light;
     margin: 5px 0;
+
+
   }
 }
 
-.booking {
+.order{
+
   width: 50%;
     img {
       height: 100%;
@@ -110,11 +114,17 @@ $base-size: 12px;
 }
 
 
-.carousel{
-  display: flex;
-margin: 200px 0;
+.carousel {
+  margin: 100px 0;
+ height: 400px;
+ object-fit: cover;
 
+button {
+top: 150px;
 }
+}
+
+
 .main-gallery {
   display: flex;
   flex-wrap: wrap;
